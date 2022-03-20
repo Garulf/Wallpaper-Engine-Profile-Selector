@@ -1,0 +1,14 @@
+body:
+  - type: input
+    attributes:
+      name: config_path
+      label: 'Wallpaper Engine Directory:'
+      defaultValue: 'C:\Steam\steamapps\common\wallpaper_engine'
+  - type: dropdown
+    attributes:
+      name: exe
+      label: 'Executable:'
+      defaultValue: 'wallpaper32.exe'
+      options:
+        - 'wallpaper32.exe'
+        - 'wallpaper64.exe'
