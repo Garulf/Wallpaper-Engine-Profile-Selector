@@ -9,7 +9,7 @@ class WallpaperEngineProfileSelector(Flox):
         super().__init__(**kwargs)
         self.config_path = self.settings.get('config_path', PATH)
         self.exe = self.settings.get('exe', EXE32)
-        self.config = we.get_config(self.config_path)
+
 
     def query(self, query):
         try:
