@@ -4,7 +4,7 @@
     "Name": "Wallpaper Engine Profile Selector",
     "Description": "Change your Wallpaper Engine Profile",
     "Author": "Garulf",
-    "Version": "0.0.2",
+    "Version": "0.1.0",
     "Language": "python",
     "Website": "https://github.com/Garulf/wallpaper-engine-profile-selector",
     "IcoPath": "./icon.png",
