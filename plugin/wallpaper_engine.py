@@ -30,7 +30,7 @@ def cmd(command):
 
 def set_profile(profile_name, wallpaper_engine_dir, exe):
     exe_path = Path(wallpaper_engine_dir, exe)
-    args = f'{exe_path} -control openProfile -profile "{profile_name}"'
+    args = f'"{exe_path}" -control openProfile -profile "{profile_name}"'
     cmd(args)
 
 
