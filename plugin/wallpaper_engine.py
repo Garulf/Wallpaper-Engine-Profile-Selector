@@ -4,7 +4,7 @@ from pathlib import Path
 from subprocess import Popen, PIPE
 
 
-PATH = r'E:\SteamLibrary\steamapps\common\wallpaper_engine'
+PATH = 'C:\Steam\steamapps\common\wallpaper_engine'
 CONFIG_FILE = 'config.json'
 EXE32 = 'wallpaper32.exe'
 EXE64 = 'wallpaper64.exe'
