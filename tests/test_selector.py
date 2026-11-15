@@ -46,3 +46,13 @@ def test_context_menu_selects_profile():
     (result,) = selector.context_menu(["Gaming"])
     assert result.title == "Set the wallpaper profile to Gaming"
     assert result.to_json()["JsonRPCAction"]["Parameters"] == ["Gaming"]
+
+
+def test_profile_result_opens_context_menu(settings, write_config):
+    write_config({"alice": user("Gaming")})
+    context_data = selector.query("")[0].to_json()["ContextData"]
+    assert titles(selector.context_menu(context_data)) == ["Set the wallpaper profile to Gaming"]
+
+
+def test_context_menu_without_data():
+    assert selector.context_menu(None) == []

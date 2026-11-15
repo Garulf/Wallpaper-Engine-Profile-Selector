@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import List, Tuple
+from typing import List, Optional, Tuple
 
 from pyflowlauncher import FlowLauncherV2, Plugin, Result, api
 
@@ -45,6 +45,7 @@ def query(query: str) -> List[Result]:
             title=name,
             subtitle="Set Wallpaper Engine to use this profile.",
             icon=ICON,
+            context_data=[name],
         ).add_action(select_profile, [name])
         for name in names
         if search in name.lower()
@@ -52,7 +53,9 @@ def query(query: str) -> List[Result]:
 
 
 @plugin.on_method
-def context_menu(data: list) -> List[Result]:
+def context_menu(data: Optional[list]) -> List[Result]:
+    if not data:
+        return []
     profile_name = data[0]
     return [
         Result(
