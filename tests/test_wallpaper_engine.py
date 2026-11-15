@@ -35,3 +35,33 @@ def test_open_profile_hides_console_on_windows(launched, monkeypatch, tmp_path):
     we.open_profile("Gaming", str(tmp_path), we.EXE32)
     ((_, kwargs),) = launched
     assert kwargs["creationflags"] == we.CREATE_NO_WINDOW == 0x08000000
+
+
+def test_profile_names_prefer_current_user(monkeypatch):
+    monkeypatch.setenv("LOGNAME", "alice")
+    config = {"alice": user("Desk"), "Administrator": user("Admin")}
+    assert we.profile_names(config) == ["Desk"]
+
+
+def test_profile_names_fall_back_to_first_user_with_profiles(monkeypatch):
+    monkeypatch.setenv("LOGNAME", "bob")
+    config = {"alice": user("Desk"), "Administrator": {"general": {}}}
+    assert we.profile_names(config) == ["Desk"]
+
+
+def test_profile_names_current_user_without_profiles(monkeypatch):
+    monkeypatch.setenv("LOGNAME", "alice")
+    config = {"alice": {"general": {"profiles": []}}, "Administrator": user("Admin")}
+    assert we.profile_names(config) == ["Admin"]
+
+
+def test_profile_names_without_users():
+    assert we.profile_names({"?installdirectory": "C:/WE", "?version": 2}) == []
+
+
+def test_current_user_unknown(monkeypatch):
+    def no_user():
+        raise OSError("No username set in the environment")
+
+    monkeypatch.setattr(we, "getuser", no_user)
+    assert we.profile_names({"alice": user("Desk")}) == ["Desk"]

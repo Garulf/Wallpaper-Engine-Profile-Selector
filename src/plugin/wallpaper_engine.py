@@ -1,8 +1,9 @@
 import json
 import sys
+from getpass import getuser
 from pathlib import Path
 from subprocess import PIPE, Popen
-from typing import List
+from typing import List, Optional
 
 DEFAULT_DIR = r"C:\Steam\steamapps\common\wallpaper_engine"
 CONFIG_FILE = "config.json"
@@ -17,12 +18,27 @@ def read_config(directory: str) -> dict:
         return json.load(file)
 
 
+def current_user() -> Optional[str]:
+    try:
+        return getuser()
+    except (ImportError, KeyError, OSError):
+        return None
+
+
+def user_profiles(user: object) -> List[str]:
+    if not isinstance(user, dict):
+        return []
+    profiles = user.get("general", {}).get("profiles") or []
+    return [profile["name"] for profile in profiles if "name" in profile]
+
+
 def profile_names(config: dict) -> List[str]:
-    for key in config:
-        if key in NON_USER_KEYS:
-            continue
-        user = config[key]
-    return [profile["name"] for profile in user["general"].get("profiles", [])]
+    users = {key: user_profiles(value) for key, value in config.items() if key not in NON_USER_KEYS}
+    username = (current_user() or "").casefold()
+    for key, profiles in users.items():
+        if key.casefold() == username and profiles:
+            return profiles
+    return next((profiles for profiles in users.values() if profiles), [])
 
 
 def profile_command(name: str, directory: str, exe: str) -> str:
