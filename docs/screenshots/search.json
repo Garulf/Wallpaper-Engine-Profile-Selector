@@ -1,0 +1,31 @@
+{
+  "keyword": "wp",
+  "query": "",
+  "icon": "../../data/icon.png",
+  "max_results": 4,
+  "selection": 0,
+  "results": [
+    {
+      "title": "Desk",
+      "subtitle": "Set Wallpaper Engine to use this profile.",
+      "icon": "../../data/icon.png"
+    },
+    {
+      "title": "Gaming",
+      "subtitle": "Set Wallpaper Engine to use this profile.",
+      "icon": "../../data/icon.png"
+    },
+    {
+      "title": "Movie Night",
+      "subtitle": "Set Wallpaper Engine to use this profile.",
+      "icon": "../../data/icon.png"
+    },
+    {
+      "title": "Presentation",
+      "subtitle": "Set Wallpaper Engine to use this profile.",
+      "icon": "../../data/icon.png"
+    }
+  ],
+  "query_suggestion": "",
+  "show_caret": false
+}
