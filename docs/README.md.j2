@@ -1,0 +1,80 @@
+{% extends "base.md.j2" %}
+
+{% block badges_extra %} [![Downloads](https://img.shields.io/github/downloads/{{ project.owner }}/{{ project.repo }}/total)]({{ project.url }}/releases/latest){% endblock %}
+
+{% block usage %}
+## Usage
+
+Type `wp` to list the profiles you saved in Wallpaper Engine, then press `Enter` to switch to one:
+
+```
+wp
+```
+
+{{ screenshot("search", alt="Wallpaper Engine profiles in Flow Launcher") }}
+
+Keep typing to filter the list by name:
+
+```
+wp night
+```
+
+{{ screenshot("filter", alt="Wallpaper Engine profiles filtered by name") }}
+
+If `config.json` lists more than one Windows account, for example after Wallpaper Engine was started once
+as Administrator, you get the profiles of the account you are signed in with.
+
+If the plugin can't find Wallpaper Engine, select the error result to open the plugin settings.
+
+## Installation
+
+### Flow Launcher
+
+In Flow Launcher, type:
+
+```
+pm install Wallpaper Engine Profile Selector
+```
+
+{{ screenshot("install", alt="Flow Launcher plugin manager installing Wallpaper Engine Profile Selector") }}
+
+### Manual installation
+
+Download `Wallpaper-Engine-Profile-Selector-<version>.zip` from the [latest release]({{ project.url }}/releases/latest) and unzip it into
+`%appdata%\FlowLauncher\Plugins`, then restart Flow Launcher.
+
+Pre-releases of the next version are published from the open release PR on the
+[releases page]({{ project.url }}/releases) for testing. Flow Launcher won't offer them as updates.
+
+## Configuration
+
+Open **Settings → Plugins → Wallpaper Engine Profile Selector** in Flow Launcher:
+
+| Setting | Default | Description |
+| --- | --- | --- |
+| Wallpaper Engine Directory | `C:\Steam\steamapps\common\wallpaper_engine` | The folder with Wallpaper Engine's `config.json` and executables |
+| Executable | `wallpaper32.exe` | The executable that switches profiles. Pick `wallpaper64.exe` if you run the 64-bit version |
+
+With Steam in its default location the directory is
+`C:\Program Files (x86)\Steam\steamapps\common\wallpaper_engine`.
+
+## Requirements
+
+* Flow Launcher 1.17.0 or newer
+* Python 3.8 or newer, which Flow Launcher can install for you
+* Wallpaper Engine
+{% set recent_changes = changelog(3) %}
+{%- if recent_changes | trim %}
+
+## Changelog
+
+{{ recent_changes }}
+
+See [CHANGELOG.md](CHANGELOG.md) for the full history.
+{% endif %}
+{%- endblock %}
+
+{% block screenshots %}{% endblock %}
+{% block install %}{% endblock %}
+{% block contributing %}{% endblock %}
+{% block license %}{% endblock %}

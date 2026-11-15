@@ -1,0 +1,21 @@
+{
+  "keyword": "wp",
+  "query": "night",
+  "icon": "../../data/icon.png",
+  "max_results": 2,
+  "selection": 0,
+  "results": [
+    {
+      "title": "Movie Night",
+      "subtitle": "Set Wallpaper Engine to use this profile.",
+      "icon": "../../data/icon.png"
+    },
+    {
+      "title": "Night Sky",
+      "subtitle": "Set Wallpaper Engine to use this profile.",
+      "icon": "../../data/icon.png"
+    }
+  ],
+  "query_suggestion": "",
+  "show_caret": false
+}
